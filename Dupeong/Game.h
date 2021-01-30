@@ -6,7 +6,7 @@
 //
 
 #pragma once
-#include "SDL/SDL.h"
+#include "SDL.h"
 
 class Game {
     
@@ -32,10 +32,10 @@ private:
     void GenerateOutput();
     
     // Window created by SDL
-    SDL_Windows* mWindow;
+    SDL_Window* mWindow;
     
     // Game should continue to run
     bool mIsRunning;
     
     
-}
+};

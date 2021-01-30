@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1CA6F2B925C5FA6300490A5A /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1CA6F2B825C5FA6300490A5A /* main.cpp */; };
+		1CA6F2C425C6043D00490A5A /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1CA6F2C325C6043D00490A5A /* Game.cpp */; };
+		1CA6F2C725C607C800490A5A /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CA6F2C625C607C800490A5A /* SDL2.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -26,6 +28,8 @@
 		1CA6F2B525C5FA6300490A5A /* Dupeong */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Dupeong; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CA6F2B825C5FA6300490A5A /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		1CA6F2C125C602A600490A5A /* Game.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
+		1CA6F2C325C6043D00490A5A /* Game.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Game.cpp; sourceTree = "<group>"; };
+		1CA6F2C625C607C800490A5A /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1CA6F2C725C607C800490A5A /* SDL2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +47,7 @@
 		1CA6F2AC25C5FA6300490A5A = {
 			isa = PBXGroup;
 			children = (
+				1CA6F2C625C607C800490A5A /* SDL2.framework */,
 				1CA6F2B725C5FA6300490A5A /* Dupeong */,
 				1CA6F2B625C5FA6300490A5A /* Products */,
 			);
@@ -60,6 +66,7 @@
 			children = (
 				1CA6F2B825C5FA6300490A5A /* main.cpp */,
 				1CA6F2C125C602A600490A5A /* Game.h */,
+				1CA6F2C325C6043D00490A5A /* Game.cpp */,
 			);
 			path = Dupeong;
 			sourceTree = "<group>";
@@ -121,6 +128,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1CA6F2B925C5FA6300490A5A /* main.cpp in Sources */,
+				1CA6F2C425C6043D00490A5A /* Game.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,6 +256,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 86M58PX88Z;
 				ENABLE_HARDENED_RUNTIME = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -258,6 +270,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 86M58PX88Z;
 				ENABLE_HARDENED_RUNTIME = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
