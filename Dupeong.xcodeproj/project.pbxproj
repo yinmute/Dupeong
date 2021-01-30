@@ -25,6 +25,7 @@
 /* Begin PBXFileReference section */
 		1CA6F2B525C5FA6300490A5A /* Dupeong */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Dupeong; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CA6F2B825C5FA6300490A5A /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		1CA6F2C125C602A600490A5A /* Game.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +59,7 @@
 			isa = PBXGroup;
 			children = (
 				1CA6F2B825C5FA6300490A5A /* main.cpp */,
+				1CA6F2C125C602A600490A5A /* Game.h */,
 			);
 			path = Dupeong;
 			sourceTree = "<group>";
