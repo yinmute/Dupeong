@@ -1,7 +1,7 @@
 # Dupeong
 Variation of 2 player Pong game with duplicating balls.
 
-Uses SDL framework - https://www.libsdl.org/.
+Uses SDL framework - https://www.libsdl.org/, version 2.0.14
 
 MacOS version of the project.
 
