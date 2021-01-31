@@ -8,6 +8,12 @@
 #pragma once
 #include "SDL.h"
 
+
+struct Vector2 {
+    float x;
+    float y;
+};
+
 class Game {
     
 public:
@@ -30,5 +36,11 @@ private:
     // SDL Renderer
     SDL_Renderer* mRenderer;
     // Game should continue to run
-    bool mIsRunning;    
+    bool mIsRunning;
+    
+    // Pong specific
+    // Position of the paddle
+    Vector2 mPaddlePos;
+    // Position of the ball
+    Vector2 mBallPos;    
 };
