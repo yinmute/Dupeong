@@ -7,6 +7,7 @@
 
 #include "Game.h"
 
+const int thickness = 15;
 
 Game::Game()
 :mWindow(nullptr)
@@ -92,6 +93,34 @@ void Game::GenerateOutput() {
                            255);
     // Clear back buffer
     SDL_RenderClear(mRenderer);
+    
+    // Draw walls
+    SDL_SetRenderDrawColor(mRenderer, 255, 255, 255, 255);
+    
+    // Draw top wall
+    SDL_Rect wall{
+        0, // Top left x
+        0, // Top left y
+        1024, // Width
+        thickness // Height
+    };
+    SDL_RenderFillRect(mRenderer, &wall);
+    
+    // Draw bottom wall
+    wall.y = 768 - thickness;
+    SDL_RenderFillRect(mRenderer, &wall);
+    
+    // Draw right wall
+    wall.x = 1024 - thickness;
+    wall.y = 0;
+    wall.w = thickness;
+    wall.h = 1024;
+    SDL_RenderFillRect(mRenderer, &wall);
+    
+    // Draw paddle
+    SDL_Rect paddle {
+        static_cast<int>(m),
+    }
     
     // Swap front buffer and back buffer
     SDL_RenderPresent(mRenderer);
