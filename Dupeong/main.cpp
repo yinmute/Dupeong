@@ -6,9 +6,8 @@
 //
 
 #include <iostream>
-#include <SDL2/SDL.h>
+#include "SDL.h"
 #include "Game.h"
-#include <SDL_image.h>
 
 int main(int argc, const char * argv[]) {
     // insert code here...

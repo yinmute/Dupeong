@@ -7,12 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1C78368525C6220000EFFC49 /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C78368225C6218600EFFC49 /* SDL2_image.framework */; };
+		1C78368625C6220000EFFC49 /* SDL2_image.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1C78368225C6218600EFFC49 /* SDL2_image.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1C78368825C6220100EFFC49 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CA6F2C625C607C800490A5A /* SDL2.framework */; };
+		1C78368925C6220100EFFC49 /* SDL2.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1CA6F2C625C607C800490A5A /* SDL2.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1CA6F2B925C5FA6300490A5A /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1CA6F2B825C5FA6300490A5A /* main.cpp */; };
-		1CA6F2C425C6043D00490A5A /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1CA6F2C325C6043D00490A5A /* Game.cpp */; };
-		1CA6F2C725C607C800490A5A /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CA6F2C625C607C800490A5A /* SDL2.framework */; };
+		1CA6F2DD25C6124100490A5A /* Game.h in Sources */ = {isa = PBXBuildFile; fileRef = 1CA6F2C125C602A600490A5A /* Game.h */; };
+		1CA6F2DF25C6124A00490A5A /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1CA6F2C325C6043D00490A5A /* Game.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		1C78368725C6220000EFFC49 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				1C78368625C6220000EFFC49 /* SDL2_image.framework in Embed Frameworks */,
+				1C78368925C6220100EFFC49 /* SDL2.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1CA6F2B325C5FA6300490A5A /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -25,6 +41,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1C78368225C6218600EFFC49 /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../../../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
+		1C78368A25C622A900EFFC49 /* Dupeong.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Dupeong.entitlements; sourceTree = "<group>"; };
 		1CA6F2B525C5FA6300490A5A /* Dupeong */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Dupeong; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CA6F2B825C5FA6300490A5A /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		1CA6F2C125C602A600490A5A /* Game.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
@@ -37,19 +55,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1CA6F2C725C607C800490A5A /* SDL2.framework in Frameworks */,
+				1C78368525C6220000EFFC49 /* SDL2_image.framework in Frameworks */,
+				1C78368825C6220100EFFC49 /* SDL2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1C78368125C6218600EFFC49 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1C78368225C6218600EFFC49 /* SDL2_image.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		1CA6F2AC25C5FA6300490A5A = {
 			isa = PBXGroup;
 			children = (
 				1CA6F2C625C607C800490A5A /* SDL2.framework */,
 				1CA6F2B725C5FA6300490A5A /* Dupeong */,
 				1CA6F2B625C5FA6300490A5A /* Products */,
+				1C78368125C6218600EFFC49 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -64,6 +92,7 @@
 		1CA6F2B725C5FA6300490A5A /* Dupeong */ = {
 			isa = PBXGroup;
 			children = (
+				1C78368A25C622A900EFFC49 /* Dupeong.entitlements */,
 				1CA6F2B825C5FA6300490A5A /* main.cpp */,
 				1CA6F2C125C602A600490A5A /* Game.h */,
 				1CA6F2C325C6043D00490A5A /* Game.cpp */,
@@ -81,6 +110,7 @@
 				1CA6F2B125C5FA6300490A5A /* Sources */,
 				1CA6F2B225C5FA6300490A5A /* Frameworks */,
 				1CA6F2B325C5FA6300490A5A /* CopyFiles */,
+				1C78368725C6220000EFFC49 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -127,8 +157,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1CA6F2DF25C6124A00490A5A /* Game.cpp in Sources */,
+				1CA6F2DD25C6124100490A5A /* Game.h in Sources */,
 				1CA6F2B925C5FA6300490A5A /* main.cpp in Sources */,
-				1CA6F2C425C6043D00490A5A /* Game.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -172,6 +203,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				EXCLUDED_ARCHS = "";
 				"FRAMEWORK_SEARCH_PATHS[arch=*]" = /Library/Frameworks;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -187,7 +219,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				"HEADER_SEARCH_PATHS[arch=*]" = /Library/Frameworks/SDL2.framework/Headers;
+				"HEADER_SEARCH_PATHS[arch=*]" = (
+					/Library/Frameworks/SDL2.framework/Headers,
+					/Library/Frameworks/SDL2_image.framework/Headers,
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -233,6 +268,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				EXCLUDED_ARCHS = "";
 				"FRAMEWORK_SEARCH_PATHS[arch=*]" = /Library/Frameworks;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -242,10 +278,14 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				"HEADER_SEARCH_PATHS[arch=*]" = /Library/Frameworks/SDL2.framework/Headers;
+				"HEADER_SEARCH_PATHS[arch=*]" = (
+					/Library/Frameworks/SDL2.framework/Headers,
+					/Library/Frameworks/SDL2_image.framework/Headers,
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -253,6 +293,7 @@
 		1CA6F2BD25C5FA6300490A5A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Dupeong/Dupeong.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 86M58PX88Z;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -267,6 +308,7 @@
 		1CA6F2BE25C5FA6300490A5A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Dupeong/Dupeong.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 86M58PX88Z;
 				ENABLE_HARDENED_RUNTIME = YES;
