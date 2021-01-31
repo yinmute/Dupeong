@@ -39,11 +39,23 @@ bool Game::Initialize() {
         return false;
     }
     
+    
+    // Create SDL renderer
+    mRenderer = SDL_CreateRenderer(
+                                   mWindow, // Window to create renderer for
+                                   -1,
+                                   SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+    if (!mRenderer) {
+        SDL_Log("Failed to create renderer: %s ", SDL_GetError);
+        return false;
+    }
+    
     return true;
 }
 
 void Game::Shutdown() {
     SDL_DestroyWindow(mWindow);
+    SDL_DestroyRenderer(mRenderer);
     SDL_Quit();
 }
 
@@ -71,6 +83,18 @@ void Game::UpdateGame() {
 }
 
 void Game::GenerateOutput() {
+    // Set draw color to blue
+    SDL_SetRenderDrawColor(
+                           mRenderer,
+                           168,
+                           168,
+                           168,
+                           255);
+    // Clear back buffer
+    SDL_RenderClear(mRenderer);
+    
+    // Swap front buffer and back buffer
+    SDL_RenderPresent(mRenderer);
     
 }
 

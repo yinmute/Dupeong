@@ -27,6 +27,8 @@ private:
     void GenerateOutput();
     // Window created by SDL
     SDL_Window* mWindow;
+    // SDL Renderer
+    SDL_Renderer* mRenderer;
     // Game should continue to run
     bool mIsRunning;    
 };
