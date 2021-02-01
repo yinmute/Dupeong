@@ -35,12 +35,18 @@ private:
     SDL_Window* mWindow;
     // SDL Renderer
     SDL_Renderer* mRenderer;
+    // Number of ticks since start of the game
+    Uint32 mTicksCount;
     // Game should continue to run
     bool mIsRunning;
     
     // Pong specific
+    // Direction of paddle
+    int mPaddleDir;
     // Position of the paddle
     Vector2 mPaddlePos;
     // Position of the ball
-    Vector2 mBallPos;    
+    Vector2 mBallPos;
+    // Velocity of the ball
+    Vector2 mBallVel;
 };
