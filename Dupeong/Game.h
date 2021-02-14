@@ -61,5 +61,5 @@ private:
     // Velocity of the ball
     Vector2 mBallVel;
     // Array of balls
-    std::vector<Ball> balls;
+    std::vector<Ball> mBalls;
 };

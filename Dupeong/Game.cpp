@@ -6,6 +6,9 @@
 //
 
 #include "Game.h"
+#include <iostream>
+
+using namespace std;
 
 const int thickness = 15;
 const float paddleH = 100.0f;
@@ -13,7 +16,7 @@ const float paddleH = 100.0f;
 // Update paddle position based on direction
 void updatePaddlePosition(Vector2& paddlePosition, int paddleDirection, float deltaTime) {
     if (paddleDirection != 0) {
-        paddlePosition.y += paddleDirection * 300.0f * deltaTime;
+        paddlePosition.y += paddleDirection * 600.0f * deltaTime;
         // Make sure paddle doesn't move off screen
         if (paddlePosition.y < (paddleH/2.0f + thickness)) {
             paddlePosition.y = paddleH/2.0f + thickness;
@@ -86,7 +89,7 @@ bool Game::Initialize() {
         mBallVel.y,
         0,
     };
-    balls.push_back(ball1);
+    mBalls.push_back(ball1);
     
     return true;
 }
@@ -159,9 +162,12 @@ void Game::UpdateGame() {
 
     // Flag to add new ball if needed
     bool addNewBall = false;
+    // Save veolicty for a new ball
+    float velX = 0;
+    float velY = 0;
     
     // Update balls position based on ball velocity
-    for(auto& ball: balls) {
+    for(auto& ball: mBalls) {
         // Update ball position based on ball velocity
         ball.position.x += ball.velocity.x * deltaTime;
         ball.position.y += ball.velocity.y * deltaTime;
@@ -186,6 +192,7 @@ void Game::UpdateGame() {
         // Did the ball go off the screen? (if so, end game)
         else if (ball.position.x <= 0.0f) {
             mIsRunning = false;
+            cout << "Right player won the game!" << endl;
         }
         
         if (
@@ -200,6 +207,7 @@ void Game::UpdateGame() {
         }
         else if (ball.position.x >= 1024.f) {
             mIsRunning = false;
+            cout << "Left player won the game!" << endl;
         }
         
         // Did the ball collide with the top wall?
@@ -212,23 +220,27 @@ void Game::UpdateGame() {
             ball.velocity.y *= -1;
         }
         // Each 10 bounces off the paddle - spawn a new ball in opposite direction
-        if (ball.numberOfBounces == 2) {
+        if (ball.numberOfBounces == 5) {
             addNewBall = true;
             ball.numberOfBounces = 0;
+            velX = ball.velocity.x;
+            velY = ball.velocity.y;
         }
     }
     
     // Adding a new ball if flag was set
     if (addNewBall) {
-        addNewBall = false;
         Ball newBall = {
             mBallPos.x,
             mBallPos.y,
-            mBallVel.x,
-            mBallVel.y,
+            velX,
+            -velY,
             0,
         };
-        balls.push_back(newBall);
+        mBalls.push_back(newBall);
+        velX = 0;
+        velY = 0;
+        addNewBall = false;
     }
     
 }
@@ -279,14 +291,14 @@ void Game::GenerateOutput() {
     SDL_RenderFillRect(mRenderer, &secondPaddle);
     
     // Draw balls
-    for(const auto& ball: balls) {
-            SDL_Rect second_ball{
+    for(const auto& ball: mBalls) {
+            SDL_Rect ballToDraw{
             static_cast<int>(ball.position.x - thickness/2),
             static_cast<int>(ball.position.y - thickness/2),
             thickness,
             thickness,
         };
-        SDL_RenderFillRect(mRenderer, &second_ball);
+        SDL_RenderFillRect(mRenderer, &ballToDraw);
     }
     
     // Swap front buffer and back buffer
