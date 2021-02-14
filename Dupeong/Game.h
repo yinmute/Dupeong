@@ -18,6 +18,7 @@ struct Vector2 {
 struct Ball {
     Vector2 position;
     Vector2 velocity;
+    int numberOfBounces;
 };
 
 class Game {

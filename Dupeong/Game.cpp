@@ -79,19 +79,13 @@ bool Game::Initialize() {
     mBallVel.x = -200.0f;
     mBallVel.y = 235;
     
-    Ball ball2 = {
-        924.0f/2.0f,
-        668.0f/2.0f,
-        -200.0f,
-        235
-    };
     Ball ball1 = {
         mBallPos.x,
         mBallPos.y,
         mBallVel.x,
         mBallVel.y,
+        0,
     };
-    balls.push_back(ball2);
     balls.push_back(ball1);
     
     return true;
@@ -163,6 +157,9 @@ void Game::UpdateGame() {
     // Update second paddle position
     updatePaddlePosition(mSecondPaddlePos, mSecondPaddleDir, deltaTime);
 
+    // Flag to add new ball if needed
+    bool addNewBall = false;
+    
     // Update balls position based on ball velocity
     for(auto& ball: balls) {
         // Update ball position based on ball velocity
@@ -184,6 +181,7 @@ void Game::UpdateGame() {
             // The ball is moving to the left
             ball.velocity.x < 0.0f) {
             ball.velocity.x *= -1.0f;
+            ball.numberOfBounces += 1;
         }
         // Did the ball go off the screen? (if so, end game)
         else if (ball.position.x <= 0.0f) {
@@ -198,6 +196,7 @@ void Game::UpdateGame() {
             // The ball is moving to the right
             ball.velocity.x > 0.0f) {
             ball.velocity.x *= -1.0f;
+            ball.numberOfBounces += 1;
         }
         else if (ball.position.x >= 1024.f) {
             mIsRunning = false;
@@ -212,7 +211,26 @@ void Game::UpdateGame() {
         else if (ball.position.y >= (768 - thickness) &&  ball.velocity.y > 0.0f) {
             ball.velocity.y *= -1;
         }
+        // Each 10 bounces off the paddle - spawn a new ball in opposite direction
+        if (ball.numberOfBounces == 2) {
+            addNewBall = true;
+            ball.numberOfBounces = 0;
+        }
     }
+    
+    // Adding a new ball if flag was set
+    if (addNewBall) {
+        addNewBall = false;
+        Ball newBall = {
+            mBallPos.x,
+            mBallPos.y,
+            mBallVel.x,
+            mBallVel.y,
+            0,
+        };
+        balls.push_back(newBall);
+    }
+    
 }
 
 void Game::GenerateOutput() {
