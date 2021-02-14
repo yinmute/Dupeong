@@ -7,11 +7,17 @@
 
 #pragma once
 #include "SDL.h"
+#include <vector>
 
 
 struct Vector2 {
     float x;
     float y;
+};
+
+struct Ball {
+    Vector2 position;
+    Vector2 velocity;
 };
 
 class Game {
@@ -53,4 +59,6 @@ private:
     Vector2 mBallPos;
     // Velocity of the ball
     Vector2 mBallVel;
+    // Array of balls
+    std::vector<Ball> balls;
 };

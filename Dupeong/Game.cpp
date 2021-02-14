@@ -79,6 +79,21 @@ bool Game::Initialize() {
     mBallVel.x = -200.0f;
     mBallVel.y = 235;
     
+    Ball ball2 = {
+        924.0f/2.0f,
+        668.0f/2.0f,
+        -200.0f,
+        235
+    };
+    Ball ball1 = {
+        mBallPos.x,
+        mBallPos.y,
+        mBallVel.x,
+        mBallVel.y,
+    };
+    balls.push_back(ball2);
+    balls.push_back(ball1);
+    
     return true;
 }
 
@@ -148,52 +163,55 @@ void Game::UpdateGame() {
     // Update second paddle position
     updatePaddlePosition(mSecondPaddlePos, mSecondPaddleDir, deltaTime);
 
-    // Update ball position based on ball velocity
-    mBallPos.x += mBallVel.x * deltaTime;
-    mBallPos.y += mBallVel.y * deltaTime;
-    
-    // Bounce if needed
-    // Did we intersect with the paddle?
-    float diff = mPaddlePos.y - mBallPos.y;
-    float diffSecond = mSecondPaddlePos.y - mBallPos.y;
-    // Take absolute value of difference
-    diff = (diff > 0.0f) ? diff : -diff;
-    diffSecond = (diffSecond > 0.0f) ? diffSecond : -diffSecond;
-    if (
-        // Our y-difference is small enough
-        diff <= paddleH / 2.0f &&
-        // We are in the correct x-position
-        mBallPos.x < 25.0f && mBallPos.x > 20.0f &&
-        // The ball is moving to the left
-        mBallVel.x < 0.0f) {
-        mBallVel.x *= -1.0f;
-    }
-    // Did the ball go off the screen? (if so, end game)
-    else if (mBallPos.x <= 0.0f) {
-        mIsRunning = false;
-    }
-    
-    if (
-        // Our y-difference is small enough
-        diffSecond <= paddleH / 2.0f &&
-        // We are in the correct x-position
-        mBallPos.x < 1004.0f && mBallPos.x > 999.0f &&
-        // The ball is moving to the right
-        mBallVel.x > 0.0f) {
-        mBallVel.x *= -1.0f;
-    }
-    else if (mBallPos.x >= 1024.f) {
-        mIsRunning = false;
-    }
-    
-    // Did the ball collide with the top wall?
-    if (mBallPos.y <= thickness && mBallVel.y < 0.0f) {
-        mBallVel.y *= -1;
-    }
-    
-    // Did the ball collide with the bottom wall?
-    else if (mBallPos.y >= (768 - thickness) &&  mBallVel.y > 0.0f) {
-        mBallVel.y *= -1;
+    // Update balls position based on ball velocity
+    for(auto& ball: balls) {
+        // Update ball position based on ball velocity
+        ball.position.x += ball.velocity.x * deltaTime;
+        ball.position.y += ball.velocity.y * deltaTime;
+                
+        // Bounce if needed
+        // Did we intersect with the paddle?
+        float diff = mPaddlePos.y - ball.position.y;
+        float diffSecond = mSecondPaddlePos.y - ball.position.y;
+        // Take absolute value of difference
+        diff = (diff > 0.0f) ? diff : -diff;
+        diffSecond = (diffSecond > 0.0f) ? diffSecond : -diffSecond;
+        if (
+            // Our y-difference is small enough
+            diff <= paddleH / 2.0f &&
+            // We are in the correct x-position
+            ball.position.x < 25.0f && ball.position.x > 20.0f &&
+            // The ball is moving to the left
+            ball.velocity.x < 0.0f) {
+            ball.velocity.x *= -1.0f;
+        }
+        // Did the ball go off the screen? (if so, end game)
+        else if (ball.position.x <= 0.0f) {
+            mIsRunning = false;
+        }
+        
+        if (
+            // Our y-difference is small enough
+            diffSecond <= paddleH / 2.0f &&
+            // We are in the correct x-position
+            ball.position.x < 1004.0f && ball.position.x > 999.0f &&
+            // The ball is moving to the right
+            ball.velocity.x > 0.0f) {
+            ball.velocity.x *= -1.0f;
+        }
+        else if (ball.position.x >= 1024.f) {
+            mIsRunning = false;
+        }
+        
+        // Did the ball collide with the top wall?
+        if (ball.position.y <= thickness && ball.velocity.y < 0.0f) {
+            ball.velocity.y *= -1;
+        }
+        
+        // Did the ball collide with the bottom wall?
+        else if (ball.position.y >= (768 - thickness) &&  ball.velocity.y > 0.0f) {
+            ball.velocity.y *= -1;
+        }
     }
 }
 
@@ -242,14 +260,16 @@ void Game::GenerateOutput() {
     };
     SDL_RenderFillRect(mRenderer, &secondPaddle);
     
-    // Draw ball
-    SDL_Rect ball{
-        static_cast<int>(mBallPos.x - thickness/2),
-        static_cast<int>(mBallPos.y - thickness/2),
-        thickness,
-        thickness,
-    };
-    SDL_RenderFillRect(mRenderer, &ball);
+    // Draw balls
+    for(const auto& ball: balls) {
+            SDL_Rect second_ball{
+            static_cast<int>(ball.position.x - thickness/2),
+            static_cast<int>(ball.position.y - thickness/2),
+            thickness,
+            thickness,
+        };
+        SDL_RenderFillRect(mRenderer, &second_ball);
+    }
     
     // Swap front buffer and back buffer
     SDL_RenderPresent(mRenderer);
