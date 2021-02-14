@@ -1,2 +1,6 @@
 xcuserdata/
 
+/Dupeong_win/Debug
+/Dupeong_win/Release
+/Dupeong_win/.vs
+/Dupeong_win/*.user
