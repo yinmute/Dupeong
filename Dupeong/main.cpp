@@ -5,16 +5,10 @@
 //  Created by Nesiolovskiy, Artem on 1/30/21.
 //
 
-#include <iostream>
 #include "SDL.h"
 #include "Game.h"
 
 int main(int argc, char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
-    std::cout << "Test";
-    std::cout << "catdog";
-    
     Game game;
     bool success = game.Initialize();
     

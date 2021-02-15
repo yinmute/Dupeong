@@ -12,6 +12,9 @@ using namespace std;
 
 const int thickness = 15;
 const float paddleH = 100.0f;
+const float offset = 3.0f;
+const float speedMultiplier = 0.75f;
+const float bounceTimes = 3;
 
 // Update paddle position based on direction
 void updatePaddlePosition(Vector2& paddlePosition, int paddleDirection, float deltaTime) {
@@ -79,8 +82,8 @@ bool Game::Initialize() {
     mSecondPaddlePos.y = 768.0f/2.0f;
     mBallPos.x = 1024.0f/2.0f;
     mBallPos.y = 768.0f/2.0f;
-    mBallVel.x = -200.0f;
-    mBallVel.y = 235;
+    mBallVel.x = -200.0f * speedMultiplier;
+    mBallVel.y = 235.0f * speedMultiplier;
     
     Ball ball1 = {
         mBallPos.x,
@@ -183,7 +186,7 @@ void Game::UpdateGame() {
             // Our y-difference is small enough
             diff <= paddleH / 2.0f &&
             // We are in the correct x-position
-            ball.position.x < 25.0f && ball.position.x > 20.0f &&
+            ball.position.x < (10.0f + thickness*1.5 - offset) && ball.position.x > (5.0f + thickness*1.5 - offset) &&
             // The ball is moving to the left
             ball.velocity.x < 0.0f) {
             ball.velocity.x *= -1.0f;
@@ -194,12 +197,12 @@ void Game::UpdateGame() {
             mIsRunning = false;
             cout << "Right player won the game!" << endl;
         }
-        
+		cout << mSecondPaddlePos.y << " " << ball.position.y << " " << diffSecond << " " << paddleH / 2.0f << " " << ball.position.x << endl;
         if (
             // Our y-difference is small enough
             diffSecond <= paddleH / 2.0f &&
             // We are in the correct x-position
-            ball.position.x < 1004.0f && ball.position.x > 999.0f &&
+            ball.position.x < (1019.0f - thickness/2 + offset) && ball.position.x > (1014.0f - thickness*1.5 + offset) &&
             // The ball is moving to the right
             ball.velocity.x > 0.0f) {
             ball.velocity.x *= -1.0f;
@@ -211,16 +214,16 @@ void Game::UpdateGame() {
         }
         
         // Did the ball collide with the top wall?
-        if (ball.position.y <= thickness && ball.velocity.y < 0.0f) {
+        if (ball.position.y <= (thickness * 1.5 - offset) && ball.velocity.y < 0.0f) {
             ball.velocity.y *= -1;
         }
         
         // Did the ball collide with the bottom wall?
-        else if (ball.position.y >= (768 - thickness) &&  ball.velocity.y > 0.0f) {
+        else if (ball.position.y >= (768 - thickness * 1.5 + offset) &&  ball.velocity.y > 0.0f) {
             ball.velocity.y *= -1;
         }
         // Each 10 bounces off the paddle - spawn a new ball in opposite direction
-        if (ball.numberOfBounces == 5) {
+        if (ball.numberOfBounces == bounceTimes) {
             addNewBall = true;
             ball.numberOfBounces = 0;
             velX = ball.velocity.x;
