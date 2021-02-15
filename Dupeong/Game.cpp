@@ -197,7 +197,7 @@ void Game::UpdateGame() {
             mIsRunning = false;
             cout << "Right player won the game!" << endl;
         }
-        if (
+		if (
             // Our y-difference is small enough
             diffSecond <= paddleH / 2.0f &&
             // We are in the correct x-position
