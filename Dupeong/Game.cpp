@@ -197,7 +197,6 @@ void Game::UpdateGame() {
             mIsRunning = false;
             cout << "Right player won the game!" << endl;
         }
-		cout << mSecondPaddlePos.y << " " << ball.position.y << " " << diffSecond << " " << paddleH / 2.0f << " " << ball.position.x << endl;
         if (
             // Our y-difference is small enough
             diffSecond <= paddleH / 2.0f &&
