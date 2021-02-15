@@ -53,13 +53,13 @@ bool Game::Initialize() {
     // Create an SDL Window
     mWindow = SDL_CreateWindow(
                            "Dupeong", // Window title
-                           100, // Top left x-coordinate of window
-                           100, // Top left y-coordinate of window
+                           SDL_WINDOWPOS_CENTERED, // Top left x-coordinate of window
+                           SDL_WINDOWPOS_CENTERED, // Top left y-coordinate of window
                            1024, // Width of window
                            768, // Height of window
                            0 // Flags (0 for no flags set))
                            );
-    
+
     if (!mWindow) {
         SDL_Log("Failed to create window: %s", SDL_GetError());
         return false;
@@ -233,8 +233,8 @@ void Game::UpdateGame() {
     // Adding a new ball if flag was set
     if (addNewBall) {
         Ball newBall = {
-            mBallPos.x,
-            mBallPos.y,
+            mBallPos.x + (rand() % 100),
+            mBallPos.y + (rand() % 100),
             velX,
             -velY,
             0,
